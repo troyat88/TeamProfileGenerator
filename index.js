@@ -8,6 +8,7 @@ const Manager = require("./lib/manager");
 
 var teamArray = []
 
+//RETURNS PROMPTS BASED ON USER SELECTION OF TYPE OF PROFILE TO CREATE
 function selectProfile(){
     inquirer
     .prompt ([
@@ -32,8 +33,9 @@ function selectProfile(){
         }
 
     });
-
 }
+
+// DETERMINES WHETHER TO ADD ANOTHER MEMBER returns selectProfile() or whether to create HTML
 function addMember(){
     inquirer
     .prompt ([
@@ -56,28 +58,8 @@ function addMember(){
     })
 }
 
-/*function addEmployee () {
-    inquirer
-  .prompt([
-    {
-      type: 'input',
-      name: 'name',
-      message: 'Please enter employee name:',
-    },
-    {
-      type: 'input',
-      name: 'id',
-      message: 'Enter employee id:',
-    },
-    {
-      type: 'input',
-      name: 'email',
-      message: 'Enter employee email:',
-    },
-    
-])
-}*/
 
+//PROMPTS FOR MANAGER, ADDS OBJECT TO ARRAY
 function addManager () {
     inquirer
   .prompt([
@@ -111,9 +93,9 @@ function addManager () {
     console.log('manager profile created.')
     addMember()
 })
-
 }
 
+// PROMPTS FOR ENGINEER, ADDS OBJECT TO ARRAY
 function addEngineer () {
     inquirer
   .prompt([
@@ -149,6 +131,7 @@ function addEngineer () {
 })
 }
 
+//PROMPTS FOR INTERN, ADDS OBJECT TO ARRAY
 function addIntern () {
     inquirer
   .prompt([
