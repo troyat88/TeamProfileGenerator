@@ -6,6 +6,8 @@ const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
 const Manager = require("./lib/manager");
 
+var teamArray = []
+
 function selectProfile(){
     inquirer
     .prompt ([
@@ -13,10 +15,24 @@ function selectProfile(){
         type: 'checkbox',
         message: 'What type of profile do you want to create?',
         name: 'genProfile',
-        choices: ['Employee', 'Manager', 'Engineer', 'Intern'],  
+        choices: ['Manager', 'Engineer', 'Intern'],  
        } 
-
     ])
+    .then((selectedProfile) => {
+        let {genProfile} = selectedProfile;
+        if (genProfile == "Manager"){
+            return addManager();
+        }
+        if (genProfile == "Engineer"){
+            return addEngineer();
+        }if (genProfile == "Intern"){
+            return addIntern();
+        }else {
+            console.log('Something has gone wrong')
+        }
+
+    });
+
 }
 function addMember(){
     inquirer
@@ -24,13 +40,23 @@ function addMember(){
        {
         type: 'confirm',
         message: 'Do you want to add another profile?',
-        name: 'addMember',
+        name: 'addTeam',
+        default: false
        } 
 
     ])
+    .then((confirmation) => {
+        let {addTeam} = confirmation;
+    if (addTeam) {
+        return selectProfile()
+    }else {
+        console.log(teamArray) //this is where write function is called
+    }
+
+    })
 }
 
-function addEmployee () {
+/*function addEmployee () {
     inquirer
   .prompt([
     {
@@ -50,7 +76,7 @@ function addEmployee () {
     },
     
 ])
-}
+}*/
 
 function addManager () {
     inquirer
@@ -72,11 +98,20 @@ function addManager () {
     },
     {
         type: 'input',
-        name: 'offNumber',
+        name: 'officeNumber',
         message: 'Enter manager office number:',
       },
     
 ])
+.then(managerData => {
+    const {name, id, email, officeNumber} = managerData;
+    const manager = new Manager(name, id, email, officeNumber)
+    teamArray.push(manager)
+    console.log(manager)
+    console.log('manager profile created.')
+    addMember()
+})
+
 }
 
 function addEngineer () {
@@ -98,12 +133,20 @@ function addEngineer () {
       message: 'Enter engineer email:',
     },
     {
-        type: 'input',
-        name: 'git',
-        message: 'Enter engineer GitHub username',
-      },
+      type: 'input',
+      name: 'git',
+      message: 'Enter engineer GitHub username',
+    },
     
 ])
+.then(EngineerData => {
+    const {name, id, email, git} = EngineerData;
+    const engineer = new Engineer(name, id, email, git)
+    teamArray.push(engineer)
+    console.log(engineer)
+    console.log('engineer profile created.')
+    addMember()
+})
 }
 
 function addIntern () {
@@ -131,7 +174,18 @@ function addIntern () {
       },
     
 ])
+.then(internData => {
+    const {name, id, email, school} = internData;
+    const intern = new Intern(name, id, email, school)
+    teamArray.push(intern)
+    console.log(intern)
+    console.log('intern profile created.')
+    addMember()
+})
 }
+
+addManager()
+
 
 
 
