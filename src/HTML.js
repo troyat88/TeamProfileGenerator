@@ -1,19 +1,20 @@
 //create cards for each class w template literals 
 //create HTML with placeholder for cards
 //create an object or array to collect cards
-function managerCard(manager){ 
+
+function managerCardTemp(manager){ 
     return `
 <div class="container">
         <div class="card" style="width: 18rem;">
            
             <div class="card-body bg-info">
-              <h2 class="card-title">Troy Atkinson</h2>
-              <h4 class="card-text">Manager</h4>
+              <h2 class="card-title">${manager.name}</h2>
+              <h4 class="card-text">${manager.title}</h4>
             </div>
             <ul class="list-group list-group-flush">
-              <li id="id" class="list-group-item">An item</li>
-              <li id="email" class="list-group-item">A second item</li>
-              <li id="office" class="list-group-item">A third item</li>
+              <li id="id" class="list-group-item">${manager.id}</li>
+              <li id="email" class="list-group-item">${manager.officeNumber}</li>
+              <li id="office" class="list-group-item">${manager.email}</li>
             </ul>
             <div class="card-body bg-info">  
             </div>
@@ -22,19 +23,19 @@ function managerCard(manager){
 `
 }
 
-function engineerCard(engineer){
+function engineerCardTemp(engineer){
     return `
 <div class="container">
     <div class="card" style="width: 18rem;">
    
     <div class="card-body bg-info">
-      <h2 class="card-title">Troy Atkinson</h2>
-      <h4 class="card-text">Manager</h4>
+      <h2 class="card-title">${engineer.name}</h2>
+      <h4 class="card-text">${engineer.title}</h4>
     </div>
     <ul class="list-group list-group-flush">
-      <li id="id" class="list-group-item">An item</li>
-      <li id="email" class="list-group-item">A second item</li>
-      <li id="office" class="list-group-item">A third item</li>
+      <li id="id" class="list-group-item">${engineer.id}</li>
+      <li id="email" class="list-group-item">${engineer.email}</li>
+      <li id="office" class="list-group-item">${engineer.git}</li>
     </ul>
     <div class="card-body bg-info">  
     </div>
@@ -43,19 +44,19 @@ function engineerCard(engineer){
 `
 }
 
-function internCard(intern){
+function internCardTemp(intern){
     return `
 <div class="container">
     <div class="card" style="width: 18rem;">
    
     <div class="card-body bg-info">
-      <h2 class="card-title">Troy Atkinson</h2>
-      <h4 class="card-text">Manager</h4>
+      <h2 class="card-title">${intern.name}</h2>
+      <h4 class="card-text">${intern.title}</h4>
     </div>
     <ul class="list-group list-group-flush">
-      <li id="id" class="list-group-item">An item</li>
-      <li id="email" class="list-group-item">A second item</li>
-      <li id="office" class="list-group-item">A third item</li>
+      <li id="id" class="list-group-item">${intern.id}</li>
+      <li id="email" class="list-group-item">${intern.email}</li>
+      <li id="office" class="list-group-item">${intern.school}</li>
     </ul>
     <div class="card-body bg-info">  
     </div>
@@ -64,7 +65,33 @@ function internCard(intern){
 `
 }
 
-function renderHTML(){
+function createCardsArray(data) {
+    cardsArray = []
+    for (i = 0; i <data.length; i++){
+
+    const employee = data[i]
+    const role = employee.getRole()
+    if (role === 'Manager'){
+        const managerCard = managerCardTemp(employee)
+        cardsArray.push(managerCard)
+    }
+    if (role === 'Engineer'){
+        const engineerCard = engineerCardTemp(employee)
+        cardsArray.push(engineerCard)
+    }
+    if (role === 'Intern'){
+        const internCard = internCardTemp(employee)
+        cardsArray.push(internCard)
+    }
+    }
+    const compCards = cardsArray.join('')
+    const compTeam = renderHTML(compCards)
+    return compTeam;
+    
+}
+
+
+function renderHTML(compCards){
     return `
 <!DOCTYPE html>
 <html lang="en">
@@ -80,22 +107,7 @@ function renderHTML(){
        <h1 style="text-align: center; background-color: rgb(226, 174, 32); height: 100px;">Meet the Team</h1>
     </header>
 
-    <div class="container">
-        <div class="card" style="width: 18rem;">
-           
-            <div class="card-body bg-info">
-              <h2 class="card-title">Troy Atkinson</h2>
-              <h4 class="card-text">Manager</h4>
-            </div>
-            <ul class="list-group list-group-flush">
-              <li id="id" class="list-group-item">An item</li>
-              <li id="email" class="list-group-item">A second item</li>
-              <li id="office" class="list-group-item">A third item</li>
-            </ul>
-            <div class="card-body bg-info">  
-            </div>
-        </div>   
-    </div>
+    ${compCards}
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>  
 </body>
@@ -103,4 +115,4 @@ function renderHTML(){
 `
 }
 
-module.exports = htmlScript
+module.exports = createCardsArray;

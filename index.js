@@ -1,15 +1,18 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
+const createCardsArray = require("./src/HTML");
 
 const Employee = require("./lib/employee");
 const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
 const Manager = require("./lib/manager");
 
+
+
 var teamArray = []
 
 //RETURNS PROMPTS BASED ON USER SELECTION OF TYPE OF PROFILE TO CREATE
-function selectProfile(){
+const selectProfile = () =>{
     inquirer
     .prompt ([
        {
@@ -36,12 +39,12 @@ function selectProfile(){
 }
 
 // DETERMINES WHETHER TO ADD ANOTHER MEMBER returns selectProfile() or whether to create HTML
-function addMember(){
+const addMember = ()=>{
     inquirer
     .prompt ([
        {
         type: 'confirm',
-        message: 'Do you want to add another profile?',
+        message: 'Do you want to add another profile? (selecting "No" will create your page)',
         name: 'addTeam',
         default: false
        } 
@@ -51,16 +54,15 @@ function addMember(){
         let {addTeam} = confirmation;
     if (addTeam) {
         return selectProfile()
-    }else {
-        console.log(teamArray) //this is where write function is called
+    }if (!addTeam) { console.log(createCardsArray(teamArray))
+        //CREATE A FUNCTION THAT takes teamArray into createCardsarray, then promise to createFile...    
     }
-
     })
 }
 
 
 //PROMPTS FOR MANAGER, ADDS OBJECT TO ARRAY
-function addManager () {
+const addManager = () => {
     inquirer
   .prompt([
     {
@@ -96,7 +98,7 @@ function addManager () {
 }
 
 // PROMPTS FOR ENGINEER, ADDS OBJECT TO ARRAY
-function addEngineer () {
+const addEngineer = () => {
     inquirer
   .prompt([
     {
@@ -132,7 +134,7 @@ function addEngineer () {
 }
 
 //PROMPTS FOR INTERN, ADDS OBJECT TO ARRAY
-function addIntern () {
+const addIntern = () => {
     inquirer
   .prompt([
     {
@@ -167,8 +169,29 @@ function addIntern () {
 })
 }
 
+const createFile = data => {
+    fs.writeFile('team.html', data, (err) =>
+        err ? console.log(err) : console.log('Team Page Created!'))
+}
+
+
 addManager()
 
+   // .then(teamArray => {
+    //return createCardsArray(teamArray);
+//})
+//.then(teamContent =>{
+    //return createFile(teamContent)
+//})
+//.catch(err =>{
+   // console.log(err)
+//})
+
+
+
+
+
+    
 
 
 
