@@ -54,7 +54,10 @@ const addMember = ()=>{
         let {addTeam} = confirmation;
     if (addTeam) {
         return selectProfile()
-    }if (!addTeam) { console.log(createCardsArray(teamArray))
+    }if (!addTeam) { fs.writeFile('team.html', createCardsArray(teamArray), (err) =>
+    err ? console.log(err) : console.log('Team Page Created!'))
+        
+    
         //CREATE A FUNCTION THAT takes teamArray into createCardsarray, then promise to createFile...    
     }
     })
@@ -169,25 +172,15 @@ const addIntern = () => {
 })
 }
 
-const createFile = data => {
-    fs.writeFile('team.html', data, (err) =>
-        err ? console.log(err) : console.log('Team Page Created!'))
-}
+//const createFile = data => {
+    //fs.writeFile('team.html', data, (err) =>
+        //err ? console.log(err) : console.log('Team Page Created!'))
+//}
 
 
 addManager()
 
-   // .then(teamArray => {
-    //return createCardsArray(teamArray);
-//})
-//.then(teamContent =>{
-    //return createFile(teamContent)
-//})
-//.catch(err =>{
-   // console.log(err)
-//})
-
-
+//createCardsArray(teamArray);   
 
 
 
