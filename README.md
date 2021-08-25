@@ -10,7 +10,6 @@ A Node.js command-line application that takes in information about employees on 
 [Usage](#Usage)  
 [License](#License)  
 [Contributing](#Contributing)  
-[Tests](#Tests)  
     
 ## Installation
 Clone repo from GitHub and install where you want to generate Team web page
@@ -34,14 +33,12 @@ Answer prompts to generate a quality README for your project.
 ```bash
 node index.js // to run program
 ```
-![Example](assets/READMEExample.gif)
+![Example]("assets/Demo.gif")
 
     
 ## Contributing
 Fork and commit from a remote repo, Submit detailed pull request
     
-## Tests
-None currently
     
 ## License
 NOTICE: This application is issued and used under provisions established by [ISC](https://choosealicense.com/licenses/ISC/) licensing.

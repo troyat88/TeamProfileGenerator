@@ -36,7 +36,7 @@ function engineerCardTemp(engineer){
         <ul class="list-group list-group-flush">
        <li id="id" class="list-group-item">ID: ${engineer.id}</li>
        <li id="email" class="list-group-item">Email: <a href="mailto:${engineer.email}">${engineer.email}</a></li>
-       <li id="office" class="list-group-item">GitHub: <a href="https://github.com/${engineer.github}">${engineer.github}</a></li>
+       <li id="office" class="list-group-item">GitHub: <a href="https://github.com/${engineer.github}" target="_blanlk">${engineer.github}</a></li>
         </ul>
         <div class="card-body bg-info">  
         </div>
