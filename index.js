@@ -56,9 +56,7 @@ const addMember = ()=>{
         return selectProfile()
     }if (!addTeam) { fs.writeFile('team.html', createCardsArray(teamArray), (err) =>
     err ? console.log(err) : console.log('Team Page Created!'))
-        
-    
-        //CREATE A FUNCTION THAT takes teamArray into createCardsarray, then promise to createFile...    
+          
     }
     })
 }
