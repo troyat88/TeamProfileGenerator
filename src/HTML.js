@@ -10,6 +10,7 @@ function managerCardTemp(manager){
             <div class="card-body bg-info">
               <h2 class="card-title">${manager.name}</h2>
               <h4 class="card-text">${manager.title}</h4>
+              <img src="assets/icons8-strict-50.png">
             </div>
             <ul class="list-group list-group-flush">
               <li id="id" class="list-group-item">ID: ${manager.id}</li>
@@ -30,6 +31,7 @@ function engineerCardTemp(engineer){
          <div class="card-body bg-info">
        <h2 class="card-title">${engineer.name}</h2>
        <h4 class="card-text">${engineer.title}</h4>
+       <img src="assets/icons8-worker-60.png" style="height: 50px;">
         </div>
         <ul class="list-group list-group-flush">
        <li id="id" class="list-group-item">ID: ${engineer.id}</li>
@@ -49,6 +51,7 @@ function internCardTemp(intern){
             <div class="card-body bg-info">
             <h2 class="card-title">${intern.name}</h2>
             <h4 class="card-text">${intern.title}</h4>
+            <img src="assets/icons8-student-registration-50.png">
         </div>
         <ul class="list-group list-group-flush">
         <li id="id" class="list-group-item">ID: ${intern.id}</li>
