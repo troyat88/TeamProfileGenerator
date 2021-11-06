@@ -33,7 +33,7 @@ Answer prompts to generate a quality README for your project.
 ```bash
 node index.js // to run program
 ```
-![Example]("../assets/Demo.gif")
+![Example]("assets/Demo.gif")
 
     
 ## Contributing
